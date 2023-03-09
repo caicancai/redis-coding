@@ -198,3 +198,81 @@ void listDelNode(list *list, listNode *node)
     // 链表数减一
     list->len--;
 }
+
+/**
+* 为给定链表创建一个迭代器，
+ * 之后每次对这个迭代器调用 listNext 都返回被迭代到的链表节点
+ *
+ * direction 参数决定了迭代器的迭代方向：
+ *  AL_START_HEAD ：从表头向表尾迭代
+ *  AL_START_TAIL ：从表尾想表头迭代
+*/
+listIter *listGetIterator(list *list, int direction)
+{
+    //为迭代器分配内存
+    listIter *iter;
+    if((iter = zmalloc(sizeof(*iter))) == NULL) return  NULL;
+
+    if(direction == AL_START_HEAD)
+        iter->next = list->head;
+    else
+        iter->next = list->tail;
+    
+    //记录迭代方向
+    iter->direction = direction;
+
+    return iter;
+}
+
+/**
+    释放迭代器
+*/
+void listReleaseIterator(listIter *iter){
+    zfree(iter);
+}
+
+/**
+*  将迭代器的方向设置为 AL_START_HEAD ，
+ * 并将迭代指针重新指向表头节点。
+*/
+void listRewind(list *list,listIter *li){
+    li->next = list->head;
+    li->direction = AL_START_HEAD;
+}
+
+/**
+* 将迭代器的方向设置为 AL_START_TAIL ，
+ * 并将迭代指针重新指向表尾节点。
+*/
+void listRewindTail(list *list, listIter *li) {
+    li->next = list->tail;
+    li->direction = AL_START_TAIL;
+}
+
+/**
+* 返回迭代器当前所指向的节点。
+ *
+ * 删除当前节点是允许的，但不能修改链表里的其他节点。
+ *
+ * 函数要么返回一个节点，要么返回 NULL ，常见的用法是：
+ *
+ * iter = listGetIterator(list,<direction>);
+ * while ((node = listNext(iter)) != NULL) {
+ *     doSomethingWith(listNodeValue(node));
+ * }
+*/
+listNode *listNext(listIter *iter)
+{
+    listNode *current = iter->next;
+    if (current != NULL) {
+        // 根据方向选择下一个节点
+        if (iter->direction == AL_START_HEAD)
+            // 保存下一个节点，防止当前节点被删除而造成指针丢失
+            iter->next = current->next;
+        else
+            // 保存下一个节点，防止当前节点被删除而造成指针丢失
+            iter->next = current->prev;
+    }
+
+    return current;
+}
