@@ -24,6 +24,9 @@ list *listCreate(void)
     return list;
 }
 
+/**
+* 释放整个链表，以及链表中所有节点
+*/
 void listRelease(list *list)
 {
     unsigned long len;
@@ -335,6 +338,16 @@ list *listDup(list *orig)
 
 }
 
+/**
+ * 查找链表 list 中值和 key 匹配的节点。
+ * 
+ * 对比操作由链表的 match 函数负责进行，
+ * 如果没有设置 match 函数，
+ * 那么直接通过对比值的指针来决定是否匹配。
+ *
+ * 如果匹配成功，那么第一个匹配的节点会被返回。
+ * 如果没有匹配任何节点，那么返回 NULL 。
+*/
 listNode *listSearchKey(list *list, void *key)
 {
     listIter *iter;
