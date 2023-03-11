@@ -561,3 +561,4 @@ int sdscmp(const sds s1, const sds s2) {
 }
 ```
 
+参考：《Redis设计与实现》
