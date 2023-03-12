@@ -12,6 +12,8 @@
 
 链表节点结构：
 
+![屏幕截图 2023-03-12 141706](E:\redis-coding\img\屏幕截图 2023-03-12 141706.jpg)
+
 ```c
 /**
     双端链表节点
@@ -29,6 +31,8 @@ typedef struct listNode{
 ```
 
 链表结构：
+
+![1678602468563](C:\Users\86136\AppData\Roaming\Typora\typora-user-images\1678602468563.png)
 
 ```c
 /**
