@@ -16,7 +16,7 @@ struct adshdr{
 };
 ```
 
-![5520a4a26ce6d18b82175284ecfaf57](E:\redis\img\5520a4a26ce6d18b82175284ecfaf57.jpg)
+![image](https://user-images.githubusercontent.com/77189278/224494855-31a9bc53-3d5b-4a4b-a706-0a39b2c906e0.png)
 
 示例：
 
