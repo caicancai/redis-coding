@@ -12,7 +12,7 @@
 
 链表节点结构：
 
-![屏幕截图 2023-03-12 141706](E:\redis-coding\img\屏幕截图 2023-03-12 141706.jpg)
+![image](https://user-images.githubusercontent.com/77189278/224739552-cb03ab84-db57-4b82-9e49-4f88ccaaa4d6.png)
 
 ```c
 /**
@@ -32,7 +32,7 @@ typedef struct listNode{
 
 链表结构：
 
-![1678602468563](C:\Users\86136\AppData\Roaming\Typora\typora-user-images\1678602468563.png)
+![image](https://user-images.githubusercontent.com/77189278/224739804-4037cc8a-3c23-470d-9d12-f5cdae908819.png)
 
 ```c
 /**
